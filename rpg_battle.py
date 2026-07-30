@@ -24,7 +24,7 @@ for e in enemies:
 defeated_names = []
 
 while True:
-    command = input("コマンドを入力してください（1=攻撃, 2=防御,3=回復,4=逃げる）: ") 
+    command = input("コマンドを入力してください（1=攻撃, 2=防御,3=回復,4=逃げる,5=ステータス）: ") 
     gurad = False
     is_crt = False
     en_crt = False
@@ -86,6 +86,18 @@ while True:
             break
         else:
             print(player1.name+"は逃げられなかった！")
+
+    if command == "5":
+        print("==== ステータス ====")
+        print(player1.name)
+        print(f"HP: {player1.hp}/{player1.max_hp}")
+        print(f"攻撃力: {player1.attack}")
+        print(f"会心率: {int(player1.crt * 100)}%")
+        print(f"命中率: {int(player1.accuracy * 100)}%")
+        print(f"回避率: {int(player1.evasion * 100)}%")
+        print(f"逃走率: {int(player1.escape_rate * 100)}%")
+        print("===================")
+        continue
     for e in enemies:
         if e.hp > 0:
             enemy_accuracy_check = random.random()
@@ -104,6 +116,7 @@ while True:
                 print(e.name +"の攻撃")
                 print(player1.name+"に"+ str(damage)+"のダメージ！")
                 print(player1.name+"の残りHP:"+str(player1.hp))
+
     if player1.hp <= 0:
         print(player1.name+"は倒された…")
         break
